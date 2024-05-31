@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Calculadora de IMC</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Calcula tu IMC</h2>
+        <label for="peso">Ingresa tu Peso (kg):</label>
+        <input type="number" id="peso" name="peso" required><br><br>
+        <label for="altura">Ingresa tu Altura (m):</label>
+        <input type="number" id="altura" name="altura" step="0.01" required><br><br>
+        <button onclick="calcularIMC()">Calcular</button><br>
+        
+        <br><br>
+        <div class="res" id="resultadoIMC"></div>
+        <div class="nivpeso" id="nivelPeso"></div>
+    
+    </div>
+
+    <script>
+        function calcularIMC() {
+            var peso = parseFloat(document.getElementById("peso").value);
+            var altura = parseFloat(document.getElementById("altura").value);
+
+            if (peso > 0 && altura > 0) {
+                var imc = peso / (altura * altura);
+                document.getElementById("resultadoIMC").innerHTML = imc.toFixed(2);
+
+                var nivel = "";
+                if (imc < 18.5) {
+                    nivel = "Bajo peso";
+                } else if (imc >= 18.5 && imc < 25) {
+                    nivel = "Peso normal";
+                } else if (imc >= 25 && imc < 30) {
+                    nivel = "Sobrepeso";
+                } else if (imc >= 30 && imc < 35) {
+                    nivel = "Obesidad (Grado I)";
+                } else if (imc >= 35 && imc < 40) {
+                    nivel = "Obesidad (Grado II)";
+                } else {
+                    nivel = "Obesidad (Grado III)";
+                }
+
+                document.getElementById("nivelPeso").innerHTML = nivel;
+            } 
+        }
+    </script>
+</body>
+</html>
